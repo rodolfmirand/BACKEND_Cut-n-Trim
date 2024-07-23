@@ -6,8 +6,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Setter;
 
 @Data
 @Entity
@@ -16,6 +19,7 @@ public class Barber {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Setter(AccessLevel.NONE)
     private UUID id;
 
     private String name;
@@ -26,14 +30,18 @@ public class Barber {
 
     private String password;
 
-    //criar model da barberia (one to one)
+    @OneToOne
+    private BarberShop barberShop;
 
     @Builder
-    public Barber(UUID id, String name, String login, String email, String password) {
-        this.id = id;
+    public Barber(String name, String login, String email, String password) {
         this.name = name;
         this.login = login;
         this.email = email;
         this.password = password;
+    }
+
+    @Builder
+    public Barber() {
     }
 }
