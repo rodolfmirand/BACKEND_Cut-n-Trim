@@ -2,6 +2,8 @@ package org.cut_and_trim.models;
 
 import java.util.UUID;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,15 +24,19 @@ public class Barber {
     @Setter(AccessLevel.NONE)
     private UUID id;
 
+    @Column(nullable = false)
     private String name;
-
+    
+    @Column(nullable = false, unique = true)
     private String login;
-
+    
+    @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false)   
     private String password;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private BarberShop barberShop;
 
     @Builder
