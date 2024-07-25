@@ -28,7 +28,7 @@ public class Barber {
     private String name;
     
     @Column(nullable = false, unique = true)
-    private String login;
+    private String username;
     
     @Column(nullable = false, unique = true)
     private String email;
@@ -40,9 +40,9 @@ public class Barber {
     private BarberShop barberShop;
 
     @Builder
-    public Barber(String name, String login, String email, String password) {
+    public Barber(String name, String username, String email, String password) {
         this.name = name;
-        this.login = login;
+        this.username = username;
         this.email = email;
         this.password = password;
     }
