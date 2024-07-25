@@ -9,16 +9,16 @@ public class BarberRequest {
     
     private String name;
 
-    private String login;
+    private String username;
 
     private String email;
 
     private String password;
 
     @Builder
-    public BarberRequest(String name, String login, String email, String password) {
+    public BarberRequest(String name, String username, String email, String password) {
         this.name = name;
-        this.login = login;
+        this.username = username;
         this.email = email;
         this.password = password;
     }
