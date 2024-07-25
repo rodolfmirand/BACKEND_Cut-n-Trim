@@ -7,7 +7,9 @@ import org.cut_and_trim.models.BarberShop;
 import org.cut_and_trim.repositories.BarberRepository;
 import org.cut_and_trim.utils.BarberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class BarberServiceImplementation implements BarberService {
 
     @Autowired
