@@ -1,5 +1,8 @@
 package org.cut_and_trim.utils;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.cut_and_trim.dtos.request.BarberRequest;
 import org.cut_and_trim.dtos.response.BarberResponse;
 import org.cut_and_trim.models.Barber;
@@ -11,19 +14,17 @@ public class BarberMapper {
     public Barber toBarber(BarberRequest barberRequest) {
         return Barber.builder()
                 .name(barberRequest.getName())
-                .login(barberRequest.getLogin())
+                .username(barberRequest.getUsername())
                 .email(barberRequest.getEmail())
                 .password(barberRequest.getPassword())
                 .build();
     }
 
     public BarberResponse toBarberResponse(Barber barber) {
-        return BarberResponse.builder()
-                .id(barber.getId())
-                .login(barber.getLogin())
-                .email(barber.getEmail())
-                .password(barber.getPassword())
-                .barberShop(barber.getBarberShop())
-                .build();
+        return new BarberResponse(barber);
+    }
+
+    public List<BarberResponse> toBarbersList(List<Barber> barbersList){
+        return barbersList.stream().map(BarberResponse::new).collect(Collectors.toList());
     }
 }
