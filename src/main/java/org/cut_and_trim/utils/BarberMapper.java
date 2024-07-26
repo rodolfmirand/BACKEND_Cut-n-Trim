@@ -1,7 +1,7 @@
 package org.cut_and_trim.utils;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.cut_and_trim.dtos.request.BarberRequest;
 import org.cut_and_trim.dtos.response.BarberResponse;
@@ -25,6 +25,10 @@ public class BarberMapper {
     }
 
     public List<BarberResponse> toBarbersList(List<Barber> barbersList){
-        return barbersList.stream().map(BarberResponse::new).collect(Collectors.toList());
+        List<BarberResponse> barbersResponseList = new ArrayList<BarberResponse>();
+        for(Barber barber : barbersList){
+            barbersResponseList.add(new BarberResponse(barber));
+        }
+        return barbersResponseList;
     }
 }
