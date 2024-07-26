@@ -20,7 +20,8 @@ ADD CONSTRAINT fk_barber FOREIGN KEY (id) REFERENCES Barber(id) ON DELETE CASCAD
 
 -- Criação da tabela Client
 CREATE TABLE Client (
-    phoneNumber VARCHAR(255) PRIMARY KEY,
+    id UUID PRIMARY KEY,
+    phoneNumber VARCHAR(255),
     nome VARCHAR(255),
     barber_shop_id UUID,
     CONSTRAINT fk_client_barberShop FOREIGN KEY (barber_shop_id) REFERENCES BarberShop(id) ON DELETE CASCADE
