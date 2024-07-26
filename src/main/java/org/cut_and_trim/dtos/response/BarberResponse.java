@@ -3,11 +3,12 @@ package org.cut_and_trim.dtos.response;
 import java.util.UUID;
 
 import org.cut_and_trim.models.Barber;
-import org.cut_and_trim.models.BarberShop;
 
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
+@Builder
 public class BarberResponse {
 
     private UUID id;
@@ -20,14 +21,15 @@ public class BarberResponse {
 
     private String password;
 
-    private BarberShop barberShop;
+    private BarberShopResponseCustomerList barberShop;
 
+    @Builder
     public BarberResponse(Barber barber){
         this.id = barber.getId();
         this.name = barber.getName();
         this.username = barber.getUsername();
         this.email = barber.getEmail();
         this.password = barber.getPassword();
-        this.barberShop = barber.getBarberShop();
+        this.barberShop = new BarberShopResponseCustomerList(barber.getBarberShop());
     }
 }
