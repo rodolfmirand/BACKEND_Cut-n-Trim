@@ -33,7 +33,7 @@ public class BarberServiceImplementation implements BarberService {
 
         Barber barber = barberMapper.toBarber(barberRequest);
         BarberShop barberShop = new BarberShop();
-
+        barberShop.setName(barberRequest.getBarberShopName());
         barber.setBarberShop(barberShop);
 
         barberRepository.save(barber);
