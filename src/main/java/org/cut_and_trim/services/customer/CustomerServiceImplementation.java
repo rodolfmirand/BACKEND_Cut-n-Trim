@@ -26,7 +26,7 @@ public class CustomerServiceImplementation implements CustomerService {
 
     @Override
     public List<CustomerResponse> findAll() {
-        return customerMapper.toBarbersList(customerRepository.findAll());
+        return customerMapper.toCustomersList(customerRepository.findAll());
     }
 
     @Override
