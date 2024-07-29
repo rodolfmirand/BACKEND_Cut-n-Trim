@@ -7,6 +7,7 @@ import org.cut_and_trim.repositories.ServiceRepository;
 import org.cut_and_trim.utils.ServiceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+@org.springframework.stereotype.Service
 public class ServiceServiceImplementation implements ServiceService{
 
     @Autowired
