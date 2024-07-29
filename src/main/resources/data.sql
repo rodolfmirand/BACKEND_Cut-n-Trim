@@ -1,6 +1,13 @@
 -- Criação da tabela BarberShop
 CREATE TABLE BarberShop (
-    id UUID PRIMARY KEY
+    id UUID PRIMARY KEY,
+    name VARCHAR(255),
+    street VARCHAR(255),
+    number VARCHAR(255),
+    neighborhood VARCHAR(255),
+    city VARCHAR(255),
+    state VARCHAR(255),
+    cep VARCHAR(255)
 );
 
 -- Criação da tabela Barber
@@ -22,7 +29,7 @@ ADD CONSTRAINT fk_barber FOREIGN KEY (id) REFERENCES Barber(id) ON DELETE CASCAD
 CREATE TABLE Client (
     id UUID PRIMARY KEY,
     phoneNumber VARCHAR(255),
-    nome VARCHAR(255),
+    name VARCHAR(255),
     barber_shop_id UUID,
     CONSTRAINT fk_client_barberShop FOREIGN KEY (barber_shop_id) REFERENCES BarberShop(id) ON DELETE CASCADE
 );
