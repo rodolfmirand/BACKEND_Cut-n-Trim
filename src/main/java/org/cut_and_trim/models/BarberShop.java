@@ -26,14 +26,40 @@ public class BarberShop {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "street", nullable = false)
+    private String street;
+    
+    @Column(name = "number", nullable = false)
+    private String number;
+    
+    @Column(name = "neighborhood", nullable = false)
+    private String neighborhood;
+    
+    @Column(name = "city", nullable = false)
+    private String city;
+
+    @Column(name = "state", nullable = false)
+    private String state;
+
+    @Column(name = "cep", nullable = false)
+    private String cep;
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<Customer> customers;
 
-    @Builder
-    public BarberShop(){
-    }
-
     public void addCustomerInList(Customer customer){
         this.customers.add(customer);
+    }
+
+    @Builder
+    public BarberShop(String name, String street, String number, String neighborhood, String city, String state,
+            String cep) {
+        this.name = name;
+        this.street = street;
+        this.number = number;
+        this.neighborhood = neighborhood;
+        this.city = city;
+        this.state = state;
+        this.cep = cep;
     }
 }
