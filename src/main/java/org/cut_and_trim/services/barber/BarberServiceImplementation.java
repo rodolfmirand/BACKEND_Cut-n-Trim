@@ -6,9 +6,7 @@ import java.util.UUID;
 import org.cut_and_trim.dtos.request.BarberRequest;
 import org.cut_and_trim.dtos.response.BarberResponse;
 import org.cut_and_trim.models.Barber;
-import org.cut_and_trim.models.BarberShop;
 import org.cut_and_trim.repositories.BarberRepository;
-import org.cut_and_trim.repositories.BarberShopRepository;
 import org.cut_and_trim.utils.BarberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,9 +18,6 @@ public class BarberServiceImplementation implements BarberService {
     private BarberRepository barberRepository;
 
     @Autowired
-    private BarberShopRepository barberShopRepository;
-
-    @Autowired
     private BarberMapper barberMapper;
 
     @Override
@@ -32,12 +27,10 @@ public class BarberServiceImplementation implements BarberService {
             return null;
 
         Barber barber = barberMapper.toBarber(barberRequest);
-        BarberShop barberShop = new BarberShop();
-        barberShop.setName(barberRequest.getBarberShopName());
-        barber.setBarberShop(barberShop);
-
+        
+        barber.setBarberShop(null);
         barberRepository.save(barber);
-        barberShopRepository.save(barberShop);
+        
 
         return barberMapper.toBarberResponse(barber);
     }
