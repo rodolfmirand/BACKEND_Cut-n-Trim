@@ -14,11 +14,29 @@ public class BarberShopResponse {
     private UUID id;
 
     private String name;
+
+    private String street;
+
+    private String number;
+
+    private String neighborhood;
+
+    private String city;
+
+    private String state;
+
+    private String cep;
     
     @Builder
     public BarberShopResponse(BarberShop barberShop){
         this.id = barberShop.getId();
         this.name = barberShop.getName();
+        this.street = barberShop.getStreet();
+        this.number = barberShop.getNumber();
+        this.neighborhood = barberShop.getNeighborhood();
+        this.city = barberShop.getCity();
+        this.state = barberShop.getState();
+        this.cep = barberShop.getCep();
     }
 
 }
