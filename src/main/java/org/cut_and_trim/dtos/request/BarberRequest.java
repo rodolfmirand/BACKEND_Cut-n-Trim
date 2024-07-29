@@ -15,14 +15,11 @@ public class BarberRequest {
 
     private String password;
 
-    private String barberShopName;
-
     @Builder
-    public BarberRequest(String name, String username, String email, String password, String barberShopName) {
+    public BarberRequest(String name, String username, String email, String password) {
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.barberShopName = barberShopName;
     }
 }
