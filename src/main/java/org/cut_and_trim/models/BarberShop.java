@@ -17,24 +17,24 @@ import lombok.Data;
 @Entity
 @Builder
 public class BarberShop {
-    
+
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    
+
     @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "street", nullable = false)
     private String street;
-    
+
     @Column(name = "number", nullable = false)
     private String number;
-    
+
     @Column(name = "neighborhood", nullable = false)
     private String neighborhood;
-    
+
     @Column(name = "city", nullable = false)
     private String city;
 
@@ -47,8 +47,15 @@ public class BarberShop {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Customer> customers;
 
-    public void addCustomerInList(Customer customer){
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Service> services;
+
+    public void addCustomerInList(Customer customer) {
         this.customers.add(customer);
+    }
+
+    public void addServiceInList(Service service){
+        this.services.add(service);
     }
 
     @Builder
@@ -64,7 +71,6 @@ public class BarberShop {
     }
 
     @Builder
-    public BarberShop(){
-        
+    public BarberShop() {
     }
 }
