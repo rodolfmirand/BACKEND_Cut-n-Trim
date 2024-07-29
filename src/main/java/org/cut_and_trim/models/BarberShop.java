@@ -62,4 +62,9 @@ public class BarberShop {
         this.state = state;
         this.cep = cep;
     }
+
+    @Builder
+    public BarberShop(){
+        
+    }
 }
