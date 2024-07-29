@@ -13,12 +13,9 @@ public class CustomerResponse {
 
     private String name;
 
-    private BarberShopResponse barberShop;
-
     @Builder
     public CustomerResponse(Customer customer){
         this.phoneNumber = customer.getPhoneNumber();
         this.name = customer.getName();
-        this.barberShop = new BarberShopResponse(customer.getBarberShop());
     }
 }
