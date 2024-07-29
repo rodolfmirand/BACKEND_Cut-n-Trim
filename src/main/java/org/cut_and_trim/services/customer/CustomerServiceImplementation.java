@@ -37,7 +37,7 @@ public class CustomerServiceImplementation implements CustomerService {
             return new CustomerResponse(customerCheck);
 
         BarberShop barberShop = barberShopRepository.findById(customerRequest.getBarberShopID()).orElse(null);
-        Customer customer = customerMapper.toCustomer(customerRequest, barberShop);
+        Customer customer = customerMapper.toCustomer(customerRequest);
 
         barberShop.addCustomerInList(customer);
 
