@@ -30,6 +30,10 @@ public class BarberResponse {
         this.username = barber.getUsername();
         this.email = barber.getEmail();
         this.password = barber.getPassword();
-        this.barberShop = new BarberShopResponseCustomerList(barber.getBarberShop());
+        if(barber.getBarberShop() == null){
+            this.barberShop = null;
+        }else{
+            this.barberShop = new BarberShopResponseCustomerList(barber.getBarberShop());
+        }
     }
 }
