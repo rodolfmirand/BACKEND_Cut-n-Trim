@@ -38,4 +38,9 @@ public class Service {
         this.description = description;
         this.duration = duration;
     }
+
+    @Builder
+    public Service(){
+        
+    }
 }
