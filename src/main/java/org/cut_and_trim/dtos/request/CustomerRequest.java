@@ -14,4 +14,11 @@ public class CustomerRequest {
     private String name;
 
     private UUID barberShopID;
+
+    @Builder
+    public CustomerRequest(String phoneNumber, String name, UUID barberShopID){
+        this.phoneNumber = phoneNumber;
+        this.name = name;
+        this.barberShopID = barberShopID;
+    }
 }
