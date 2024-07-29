@@ -18,7 +18,7 @@ public class CustomerMapper {
                 .build();
     }
 
-    public List<CustomerResponse> toBarbersList(List<Customer> customersList) {
+    public List<CustomerResponse> toCustomersList(List<Customer> customersList) {
         return customersList.stream().map(CustomerResponse::new).collect(Collectors.toList());
     }
 }
