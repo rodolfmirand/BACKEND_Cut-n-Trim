@@ -2,7 +2,8 @@ package org.cut_and_trim.controllers;
 
 import java.util.List;
 
-import org.cut_and_trim.dtos.request.BarberRequest;
+import org.cut_and_trim.dtos.request.BarberRegisterRequest;
+import org.cut_and_trim.dtos.response.BarberRegisterResponse;
 import org.cut_and_trim.dtos.response.BarberResponse;
 import org.cut_and_trim.services.barber.BarberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +21,14 @@ public class BarberController {
     @Autowired
     private BarberService barberService;
 
+    // @PostMapping("/register")
+    // public ResponseEntity<BarberResponse> register(@RequestBody BarberRequest barberRequest){
+    //     return ResponseEntity.ok().body(barberService.register(barberRequest));
+    // }
+    
     @PostMapping("/register")
-    public ResponseEntity<BarberResponse> register(@RequestBody BarberRequest barberRequest){
-        return ResponseEntity.ok().body(barberService.register(barberRequest));
+    public ResponseEntity<BarberRegisterResponse> register(@RequestBody BarberRegisterRequest barberRegisterRequest){
+        return ResponseEntity.ok().body(barberService.register(barberRegisterRequest));
     } 
 
     @GetMapping("/findall")
