@@ -21,7 +21,7 @@ public class BarberResponse {
 
     private String password;
 
-    private BarberShopResponseCustomerList barberShop;
+    private BarberShopResponse barberShop;
 
     @Builder
     public BarberResponse(Barber barber){
@@ -30,10 +30,6 @@ public class BarberResponse {
         this.username = barber.getUsername();
         this.email = barber.getEmail();
         this.password = barber.getPassword();
-        if(barber.getBarberShop() == null){
-            this.barberShop = null;
-        }else{
-            this.barberShop = new BarberShopResponseCustomerList(barber.getBarberShop());
-        }
+        this.barberShop = new BarberShopResponse(barber.getBarberShop());
     }
 }
