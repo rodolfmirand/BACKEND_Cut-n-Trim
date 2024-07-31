@@ -9,6 +9,6 @@ public class BarberShopRequestAddService {
     
     private UUID barberShopID;
 
-    private UUID serviceID;
+    private ServiceRequest service;
 
 }
