@@ -44,6 +44,18 @@ public class BarberShop {
     @Column(name = "cep", nullable = false)
     private String cep;
 
+    @Column(name = "opening_time", nullable = false)
+    private String openingTime;
+
+    @Column(name = "closing_time", nullable = false)
+    private String closingTime;
+
+    @Column(name = "lunch_time_start", nullable = false)
+    private String lunchTimeStart;
+
+    @Column(name = "lunch_time_end", nullable = false)
+    private String lunchTimeEnd;
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<Customer> customers;
 
@@ -54,13 +66,13 @@ public class BarberShop {
         this.customers.add(customer);
     }
 
-    public void addServiceInList(Service service){
+    public void addServiceInList(Service service) {
         this.services.add(service);
     }
 
     @Builder
     public BarberShop(String name, String street, String number, String neighborhood, String city, String state,
-            String cep) {
+            String cep, String openingTime, String closingTime, String lunchTimeStart, String lunchTimeEnd) {
         this.name = name;
         this.street = street;
         this.number = number;
@@ -68,6 +80,10 @@ public class BarberShop {
         this.city = city;
         this.state = state;
         this.cep = cep;
+        this.openingTime = openingTime;
+        this.closingTime = closingTime;
+        this.lunchTimeStart = lunchTimeStart;
+        this.lunchTimeEnd = lunchTimeEnd;
     }
 
     @Builder
