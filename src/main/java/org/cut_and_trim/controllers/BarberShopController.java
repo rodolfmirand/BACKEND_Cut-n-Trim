@@ -30,7 +30,7 @@ public class BarberShopController {
 
     @PostMapping("/add-service")
     public ResponseEntity<ServiceResponse> addService(@RequestBody BarberShopRequestAddService barberShopRequestAddService){
-        return ResponseEntity.ok().body(barberShopService.addServiceInList(barberShopRequestAddService.getBarberShopID(), barberShopRequestAddService.getServiceID()));
+        return ResponseEntity.ok().body(barberShopService.addServiceInList(barberShopRequestAddService.getBarberShopID(), barberShopRequestAddService.getService()));
     }
 
     @GetMapping("/all-services")

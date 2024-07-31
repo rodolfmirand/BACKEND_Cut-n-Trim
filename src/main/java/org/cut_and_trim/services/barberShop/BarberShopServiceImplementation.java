@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.cut_and_trim.dtos.request.BarberShopRequest;
+import org.cut_and_trim.dtos.request.ServiceRequest;
 import org.cut_and_trim.dtos.response.BarberShopResponse;
 import org.cut_and_trim.dtos.response.BarberShopResponseServiceList;
 import org.cut_and_trim.dtos.response.ServiceResponse;
@@ -53,18 +54,17 @@ public class BarberShopServiceImplementation implements BarberShopService {
     }
 
     @Override
-    public ServiceResponse addServiceInList(UUID barberShopID, UUID serviceID) {
+    public ServiceResponse addServiceInList(UUID barberShopID, ServiceRequest serviceRequest) {
         BarberShop barberShop = barberShopRepository.findById(barberShopID).orElse(null);
 
         if (barberShop == null)
             return null;
 
-        Service service = serviceRepository.findById(serviceID).orElse(null);
-
-        if(service == null)
-            return null;
+        Service service = serviceMapper.toService(serviceRequest);
 
         barberShop.addServiceInList(service);
+
+        serviceRepository.save(service);
 
         barberShopRepository.save(barberShop);
 
