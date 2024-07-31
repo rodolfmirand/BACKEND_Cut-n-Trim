@@ -10,7 +10,7 @@ import lombok.Getter;
 public class BarberShopRequest {
 
     private UUID barberID;
-    
+
     private String name;
 
     private String street;
@@ -25,9 +25,17 @@ public class BarberShopRequest {
 
     private String cep;
 
+    private int openingTime;
+
+    private int closingTime;
+
+    private int lunchTimeStart;
+
+    private int lunchTimeEnd;
+
     @Builder
     public BarberShopRequest(UUID barberID, String name, String street, String number, String neighborhood, String city,
-            String state, String cep) {
+            String state, String cep, int openingTime, int closingTime, int lunchTimeStart, int lunchTimeEnd) {
         this.barberID = barberID;
         this.name = name;
         this.street = street;
@@ -36,8 +44,9 @@ public class BarberShopRequest {
         this.city = city;
         this.state = state;
         this.cep = cep;
+        this.openingTime = openingTime;
+        this.closingTime = closingTime;
+        this.lunchTimeStart = lunchTimeStart;
+        this.lunchTimeEnd = lunchTimeEnd;
     }
-
-    
-
 }

@@ -10,16 +10,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Entity
+@Table(name = "barber_shops")
 @Builder
 public class BarberShop {
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
@@ -45,16 +47,16 @@ public class BarberShop {
     private String cep;
 
     @Column(name = "opening_time", nullable = false)
-    private String openingTime;
+    private int openingTime;
 
     @Column(name = "closing_time", nullable = false)
-    private String closingTime;
+    private int closingTime;
 
     @Column(name = "lunch_time_start", nullable = false)
-    private String lunchTimeStart;
+    private int lunchTimeStart;
 
     @Column(name = "lunch_time_end", nullable = false)
-    private String lunchTimeEnd;
+    private int lunchTimeEnd;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Customer> customers;
@@ -72,7 +74,7 @@ public class BarberShop {
 
     @Builder
     public BarberShop(String name, String street, String number, String neighborhood, String city, String state,
-            String cep, String openingTime, String closingTime, String lunchTimeStart, String lunchTimeEnd) {
+            String cep, int openingTime, int closingTime, int lunchTimeStart, int lunchTimeEnd) {
         this.name = name;
         this.street = street;
         this.number = number;
