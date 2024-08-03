@@ -18,27 +18,40 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping(path = "/cutandtrim/barbershop")
 public class BarberShopController {
-    
+
     @Autowired
     private BarberShopService barberShopService;
 
     @PostMapping("/register")
-    public ResponseEntity<BarberShopResponse> register(@RequestBody BarberShopRequest barberShopRequest){
-        return ResponseEntity.ok().body(barberShopService.register(barberShopRequest));
+    public ResponseEntity<?> register(@RequestBody BarberShopRequest barberShopRequest) {
+        if (barberShopRequest.getBarberID() == null || barberShopRequest.getCep().isEmpty()
+                || barberShopRequest.getCity().isEmpty()
+                || barberShopRequest.getNeighborhood().isEmpty() || barberShopRequest.getName().isEmpty()
+                || barberShopRequest.getStreet().isEmpty() || barberShopRequest.getState().isEmpty())
+            return ResponseEntity.badRequest().body("Empty Values.");
+
+        BarberShopResponse barberShopResponse = barberShopService.register(barberShopRequest);
+
+        if (barberShopResponse == null)
+            return ResponseEntity.internalServerError().body("BarberShop already exists.");
+
+        return ResponseEntity.ok().body(barberShopResponse);
     }
 
     @PostMapping("/add-service")
-    public ResponseEntity<ServiceResponse> addService(@RequestBody BarberShopRequestAddService barberShopRequestAddService){
-        return ResponseEntity.ok().body(barberShopService.addServiceInList(barberShopRequestAddService.getBarberShopID(), barberShopRequestAddService.getService()));
+    public ResponseEntity<ServiceResponse> addService(
+            @RequestBody BarberShopRequestAddService barberShopRequestAddService) {
+        return ResponseEntity.ok().body(barberShopService.addServiceInList(
+                barberShopRequestAddService.getBarberShopID(), barberShopRequestAddService.getService()));
     }
 
     @GetMapping("/all-bs-sv")
-    public ResponseEntity<List<AllBarberShopsResponseServicesList>> findAllServices(){
+    public ResponseEntity<List<AllBarberShopsResponseServicesList>> findAllServices() {
         return ResponseEntity.ok().body(barberShopService.findAllServices());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BarberShopResponseServicesList> findServices(@PathVariable(value = "id") UUID id){
+    public ResponseEntity<BarberShopResponseServicesList> findServices(@PathVariable(value = "id") UUID id) {
         return ResponseEntity.ok().body(barberShopService.findServices(id));
     }
 }
