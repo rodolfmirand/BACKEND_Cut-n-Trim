@@ -10,7 +10,7 @@ import org.cut_and_trim.models.Service;
 import lombok.Getter;
 
 @Getter
-public class BarberShopResponseServiceList {
+public class AllBarberShopsResponseServicesList {
 
     private UUID id;
 
@@ -18,7 +18,7 @@ public class BarberShopResponseServiceList {
 
     private List<Service> services = new ArrayList<Service>();
 
-    public BarberShopResponseServiceList(BarberShop barberShop) {
+    public AllBarberShopsResponseServicesList(BarberShop barberShop) {
         this.id = barberShop.getId();
         this.name = barberShop.getName();
         
