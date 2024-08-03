@@ -7,14 +7,17 @@ CREATE TABLE BarberShop (
     neighborhood VARCHAR(255),
     city VARCHAR(255),
     state VARCHAR(255),
-    cep VARCHAR(255)
+    cep VARCHAR(255),
+    openingTime int,
+    closingTime int,
+    lunchTimeStart int,
+    lunchTimeEnd int
 );
 
 -- Criação da tabela Barber
 CREATE TABLE Barber (
     id UUID PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    username VARCHAR(255) NOT NULL UNIQUE,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     barberShop_id UUID UNIQUE,
