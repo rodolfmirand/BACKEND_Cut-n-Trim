@@ -1,20 +1,19 @@
 package org.cut_and_trim.controllers;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.cut_and_trim.dtos.request.BarberShopRequest;
 import org.cut_and_trim.dtos.request.BarberShopRequestAddService;
 import org.cut_and_trim.dtos.response.BarberShopResponse;
-import org.cut_and_trim.dtos.response.BarberShopResponseServiceList;
+import org.cut_and_trim.dtos.response.AllBarberShopsResponseServicesList;
+import org.cut_and_trim.dtos.response.BarberShopResponseServicesList;
 import org.cut_and_trim.dtos.response.ServiceResponse;
 import org.cut_and_trim.services.barberShop.BarberShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(path = "/cutandtrim/barbershop")
@@ -33,8 +32,13 @@ public class BarberShopController {
         return ResponseEntity.ok().body(barberShopService.addServiceInList(barberShopRequestAddService.getBarberShopID(), barberShopRequestAddService.getService()));
     }
 
-    @GetMapping("/all-services")
-    public ResponseEntity<List<BarberShopResponseServiceList>> findAllServices(){
+    @GetMapping("/all-bs-sv")
+    public ResponseEntity<List<AllBarberShopsResponseServicesList>> findAllServices(){
         return ResponseEntity.ok().body(barberShopService.findAllServices());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<BarberShopResponseServicesList> findServices(@PathVariable(value = "id") UUID id){
+        return ResponseEntity.ok().body(barberShopService.findServices(id));
     }
 }
