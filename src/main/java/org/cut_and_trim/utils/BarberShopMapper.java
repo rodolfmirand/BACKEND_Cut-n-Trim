@@ -5,7 +5,8 @@ import java.util.List;
 
 import org.cut_and_trim.dtos.request.BarberShopRequest;
 import org.cut_and_trim.dtos.response.BarberShopResponse;
-import org.cut_and_trim.dtos.response.BarberShopResponseServiceList;
+import org.cut_and_trim.dtos.response.AllBarberShopsResponseServicesList;
+import org.cut_and_trim.dtos.response.BarberShopResponseServicesList;
 import org.cut_and_trim.models.BarberShop;
 import org.springframework.stereotype.Component;
 
@@ -28,17 +29,21 @@ public class BarberShopMapper {
         return new BarberShopResponse(barberShop);
     }
 
-    public BarberShopResponseServiceList toBarberShopResponseServiceList(BarberShop barberShop){
-        return new BarberShopResponseServiceList(barberShop);
+    public AllBarberShopsResponseServicesList toBarberShopResponseServiceList(BarberShop barberShop){
+        return new AllBarberShopsResponseServicesList(barberShop);
     }
 
-    public List<BarberShopResponseServiceList> toAllBarberShopsServicesList(List<BarberShop> barberShops){
-        List<BarberShopResponseServiceList> barberShopsList = new ArrayList<BarberShopResponseServiceList>();
+    public List<AllBarberShopsResponseServicesList> toAllBarberShopsServicesList(List<BarberShop> barberShops){
+        List<AllBarberShopsResponseServicesList> barberShopsList = new ArrayList<AllBarberShopsResponseServicesList>();
 
         for(BarberShop barberShop : barberShops){
             barberShopsList.add(toBarberShopResponseServiceList(barberShop));
         }
         
         return barberShopsList;
+    }
+
+    public BarberShopResponseServicesList toBarberShopServicesList(BarberShop barberShop){
+        return new BarberShopResponseServicesList(barberShop);
     }
 }
