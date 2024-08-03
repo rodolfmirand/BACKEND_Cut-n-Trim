@@ -6,7 +6,6 @@ import java.util.UUID;
 import org.cut_and_trim.dtos.request.BarberRegisterRequest;
 import org.cut_and_trim.dtos.request.BarberRequest;
 import org.cut_and_trim.dtos.request.BarberShopRequest;
-import org.cut_and_trim.dtos.response.BarberRegisterResponse;
 import org.cut_and_trim.dtos.response.BarberResponse;
 import org.cut_and_trim.models.Barber;
 import org.cut_and_trim.models.BarberShop;
@@ -33,7 +32,7 @@ public class BarberServiceImplementation implements BarberService {
     private BarberShopMapper barberShopMapper;
 
     @Override
-    public BarberRegisterResponse register(BarberRegisterRequest barberRegisterRequest) {
+    public BarberResponse register(BarberRegisterRequest barberRegisterRequest) {
         BarberRequest barberRequest = barberRegisterRequest.getBarber();
         BarberShopRequest barberShopRequest = barberRegisterRequest.getBarberShop();
 
@@ -50,7 +49,7 @@ public class BarberServiceImplementation implements BarberService {
 
         barberShopRepository.save(barberShop);
 
-        return barberMapper.toBarberRegisterResponse(barber);
+        return barberMapper.toBarberResponse(barber);
     }
 
     @Override
