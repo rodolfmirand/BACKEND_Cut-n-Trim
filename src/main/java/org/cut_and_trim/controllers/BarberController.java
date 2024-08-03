@@ -2,7 +2,7 @@ package org.cut_and_trim.controllers;
 
 import java.util.List;
 
-import org.cut_and_trim.dtos.request.BarberRegisterRequest;
+import org.cut_and_trim.dtos.request.BarberRequest;
 import org.cut_and_trim.dtos.response.BarberResponse;
 import org.cut_and_trim.services.barber.BarberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,22 +20,15 @@ public class BarberController {
     @Autowired
     private BarberService barberService;
 
-    // @PostMapping("/register")
-    // public ResponseEntity<BarberResponse> register(@RequestBody BarberRequest
-    // barberRequest){
-    // return ResponseEntity.ok().body(barberService.register(barberRequest));
-    // }
-
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody BarberRegisterRequest barberRegisterRequest) {
+    public ResponseEntity<?> register(@RequestBody BarberRequest barberRequest) {
 
-        if (barberRegisterRequest.getBarber().getName().isEmpty()
-                || barberRegisterRequest.getBarber().getEmail().isEmpty()
-                || barberRegisterRequest.getBarber().getPassword().isEmpty()
-                || barberRegisterRequest.getBarber().getUsername().isEmpty())
+        if (barberRequest.getName().isEmpty()
+                || barberRequest.getEmail().isEmpty()
+                || barberRequest.getPassword().isEmpty())
             return ResponseEntity.badRequest().body("Empty Values.");
 
-        BarberResponse barberResponse =  barberService.register(barberRegisterRequest);
+        BarberResponse barberResponse =  barberService.register(barberRequest);
 
         if(barberResponse == null) return ResponseEntity.internalServerError().body("Barber already exists.");
 
