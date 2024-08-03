@@ -6,7 +6,8 @@ import java.util.UUID;
 import org.cut_and_trim.dtos.request.BarberShopRequest;
 import org.cut_and_trim.dtos.request.ServiceRequest;
 import org.cut_and_trim.dtos.response.BarberShopResponse;
-import org.cut_and_trim.dtos.response.BarberShopResponseServiceList;
+import org.cut_and_trim.dtos.response.AllBarberShopsResponseServicesList;
+import org.cut_and_trim.dtos.response.BarberShopResponseServicesList;
 import org.cut_and_trim.dtos.response.ServiceResponse;
 
 public interface BarberShopService {
@@ -15,6 +16,8 @@ public interface BarberShopService {
 
     ServiceResponse addServiceInList(UUID barberShopID, ServiceRequest serviceRequest);
 
-    List<BarberShopResponseServiceList> findAllServices();
+    List<AllBarberShopsResponseServicesList> findAllServices();
+
+    BarberShopResponseServicesList findServices(UUID id);
 
 }

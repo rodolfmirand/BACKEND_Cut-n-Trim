@@ -6,7 +6,8 @@ import java.util.UUID;
 import org.cut_and_trim.dtos.request.BarberShopRequest;
 import org.cut_and_trim.dtos.request.ServiceRequest;
 import org.cut_and_trim.dtos.response.BarberShopResponse;
-import org.cut_and_trim.dtos.response.BarberShopResponseServiceList;
+import org.cut_and_trim.dtos.response.AllBarberShopsResponseServicesList;
+import org.cut_and_trim.dtos.response.BarberShopResponseServicesList;
 import org.cut_and_trim.dtos.response.ServiceResponse;
 import org.cut_and_trim.models.Barber;
 import org.cut_and_trim.models.BarberShop;
@@ -72,8 +73,12 @@ public class BarberShopServiceImplementation implements BarberShopService {
     }
 
     @Override
-    public List<BarberShopResponseServiceList> findAllServices() {
+    public List<AllBarberShopsResponseServicesList> findAllServices() {
         return barberShopMapper.toAllBarberShopsServicesList(barberShopRepository.findAll());
     }
 
+    @Override
+    public BarberShopResponseServicesList findServices(UUID id) {
+        return barberShopMapper.toBarberShopServicesList(barberShopRepository.findById(id).orElse(null));
+    }
 }
