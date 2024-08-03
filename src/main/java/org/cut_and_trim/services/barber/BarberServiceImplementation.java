@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.cut_and_trim.dtos.request.BarberRegisterRequest;
 import org.cut_and_trim.dtos.request.BarberRequest;
 import org.cut_and_trim.dtos.request.BarberShopRequest;
+import org.cut_and_trim.dtos.request.SignupRequest;
 import org.cut_and_trim.dtos.response.BarberResponse;
 import org.cut_and_trim.models.Barber;
 import org.cut_and_trim.models.BarberShop;
@@ -63,5 +64,17 @@ public class BarberServiceImplementation implements BarberService {
     @Override
     public List<BarberResponse> findAll() {
         return barberMapper.toBarbersList(barberRepository.findAll());
+    }
+
+    @Override
+    public UUID signUp(SignupRequest signupRequest) {
+        
+        Barber barber = barberRepository.findByEmail(signupRequest.getEmail()).orElse(null);
+
+        if(barber == null) return null;
+
+        if(barber.getPassword().equals(signupRequest.getPassword())) return barber.getId();
+
+        return null;
     }
 }
