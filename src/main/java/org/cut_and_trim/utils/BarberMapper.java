@@ -15,7 +15,6 @@ public class BarberMapper {
     public Barber toBarber(BarberRequest barberRequest) {
         return Barber.builder()
                 .name(barberRequest.getName())
-                .username(barberRequest.getUsername())
                 .email(barberRequest.getEmail())
                 .password(barberRequest.getPassword())
                 .build();

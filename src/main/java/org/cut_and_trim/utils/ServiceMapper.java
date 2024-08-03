@@ -12,7 +12,6 @@ public class ServiceMapper {
         return Service.builder()
                 .name(serviceRequest.getName())
                 .price(serviceRequest.getPrice())
-                .description(serviceRequest.getDescription())
                 .duration(serviceRequest.getDuration())
                 .build();
     }
