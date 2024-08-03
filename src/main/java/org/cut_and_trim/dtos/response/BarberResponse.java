@@ -12,10 +12,8 @@ import lombok.Getter;
 public class BarberResponse {
 
     private UUID id;
-    
-    private String name;
 
-    private String username;
+    private String name;
 
     private String email;
 
@@ -24,12 +22,15 @@ public class BarberResponse {
     private BarberShopResponse barberShop;
 
     @Builder
-    public BarberResponse(Barber barber){
+    public BarberResponse(Barber barber) {
         this.id = barber.getId();
         this.name = barber.getName();
-        this.username = barber.getUsername();
         this.email = barber.getEmail();
         this.password = barber.getPassword();
-        this.barberShop = new BarberShopResponse(barber.getBarberShop());
+        if (barber.getBarberShop() == null) {
+            this.barberShop = null;
+        } else {
+            this.barberShop = new BarberShopResponse(barber.getBarberShop());
+        }
     }
 }
