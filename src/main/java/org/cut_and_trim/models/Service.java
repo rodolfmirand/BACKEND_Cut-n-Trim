@@ -28,17 +28,13 @@ public class Service {
     @Column(name = "price", nullable = false)
     private double price;
 
-    @Column(name = "description")
-    private String description;
-
     @Column(name = "duration")
     private double duration;
 
     @Builder
-    public Service(String name, double price, String description, double duration) {
+    public Service(String name, double price, double duration) {
         this.name = name;
         this.price = price;
-        this.description = description;
         this.duration = duration;
     }
 

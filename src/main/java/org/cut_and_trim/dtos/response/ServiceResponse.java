@@ -15,15 +15,12 @@ public class ServiceResponse {
 
     private double price;
 
-    private String description;
-
     private double duration;
 
     public ServiceResponse(Service service){
         this.id = service.getId();
         this.name = service.getName();
         this.price = service.getPrice();
-        this.description = service.getDescription();
         this.duration = service.getDuration();
     }
 }

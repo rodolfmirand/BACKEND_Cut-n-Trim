@@ -9,7 +9,5 @@ public class ServiceRequest {
 
     private double price;
 
-    private String description;
-
     private double duration;
 }
