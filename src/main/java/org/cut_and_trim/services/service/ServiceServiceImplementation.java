@@ -1,11 +1,12 @@
 package org.cut_and_trim.services.service;
 
-import java.util.UUID;
-
+import org.cut_and_trim.dtos.request.ServiceDeleteRequest;
 import org.cut_and_trim.dtos.request.ServiceRequest;
 import org.cut_and_trim.dtos.request.ServiceUpdateRequest;
 import org.cut_and_trim.dtos.response.ServiceResponse;
+import org.cut_and_trim.models.BarberShop;
 import org.cut_and_trim.models.Service;
+import org.cut_and_trim.repositories.BarberShopRepository;
 import org.cut_and_trim.repositories.ServiceRepository;
 import org.cut_and_trim.utils.ServiceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class ServiceServiceImplementation implements ServiceService{
 
     @Autowired
     private ServiceMapper serviceMapper;
+
+    @Autowired
+    private BarberShopRepository barberShopRepository;
 
     @Override
     public ServiceResponse register(ServiceRequest serviceRequest) {
@@ -44,12 +48,16 @@ public class ServiceServiceImplementation implements ServiceService{
     }
 
     @Override
-    public boolean delete(UUID id) {
-        if(serviceRepository.findById(id).isEmpty()) return false;
+    public boolean delete(ServiceDeleteRequest serviceDeleteRequest) {
+        Service service = serviceRepository.findById(serviceDeleteRequest.getServiceID()).orElse(null);
+        if(service == null) return false;
 
-        serviceRepository.deleteById(id);
+        BarberShop barberShop = barberShopRepository.findById(serviceDeleteRequest.getBarberShopID()).orElse(null);
+        if(barberShop == null) return false;
+
+        barberShop.removeServiceFromList(service);
+        serviceRepository.delete(service);
 
         return true;
     }
-    
 }
