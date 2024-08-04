@@ -3,9 +3,9 @@ package org.cut_and_trim.dtos.request;
 import java.util.UUID;
 
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
+@Data
 @Builder
 public class BarberShopRequest {
 
