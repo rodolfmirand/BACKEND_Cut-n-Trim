@@ -1,6 +1,9 @@
 package org.cut_and_trim.services.service;
 
+import java.util.UUID;
+
 import org.cut_and_trim.dtos.request.ServiceRequest;
+import org.cut_and_trim.dtos.request.ServiceUpdateRequest;
 import org.cut_and_trim.dtos.response.ServiceResponse;
 import org.cut_and_trim.models.Service;
 import org.cut_and_trim.repositories.ServiceRepository;
@@ -23,6 +26,30 @@ public class ServiceServiceImplementation implements ServiceService{
         serviceRepository.save(service);
 
         return serviceMapper.toServiceResponse(service);
+    }
+
+    @Override
+    public ServiceResponse update(ServiceUpdateRequest serviceUpdateRequest) {
+        Service service = serviceRepository.findById(serviceUpdateRequest.getId()).orElse(null);
+        
+        if(service == null) return null;
+
+        service.setName(serviceUpdateRequest.getName());
+        service.setDuration(serviceUpdateRequest.getDuration());
+        service.setPrice(serviceUpdateRequest.getPrice());
+
+        serviceRepository.save(service);
+        
+        return serviceMapper.toServiceResponse(service);
+    }
+
+    @Override
+    public boolean delete(UUID id) {
+        if(serviceRepository.findById(id).isEmpty()) return false;
+
+        serviceRepository.deleteById(id);
+
+        return true;
     }
     
 }
