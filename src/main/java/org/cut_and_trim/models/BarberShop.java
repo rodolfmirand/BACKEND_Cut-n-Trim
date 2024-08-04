@@ -72,6 +72,15 @@ public class BarberShop {
         this.services.add(service);
     }
 
+    public void removeServiceFromList(Service service){
+        for(Service sv : this.services){
+            if(sv.getId().equals(service.getId())){
+                this.services.remove(sv);
+                break;
+            } 
+        }
+    }
+
     @Builder
     public BarberShop(String name, String street, String number, String neighborhood, String city, String state,
             String cep, int openingTime, int closingTime, int lunchTimeStart, int lunchTimeEnd) {
