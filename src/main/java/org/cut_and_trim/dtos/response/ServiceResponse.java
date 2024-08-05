@@ -17,10 +17,13 @@ public class ServiceResponse {
 
     private double duration;
 
+    private String status;
+
     public ServiceResponse(Service service){
         this.id = service.getId();
         this.name = service.getName();
         this.price = service.getPrice();
         this.duration = service.getDuration();
+        this.status = service.getStatus().getCode();
     }
 }
