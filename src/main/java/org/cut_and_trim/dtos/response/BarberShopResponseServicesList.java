@@ -23,4 +23,8 @@ public class BarberShopResponseServicesList {
             }
         }
     }
+
+    public BarberShopResponseServicesList(List<Service> services){
+        this.services = services;
+    }
 }
