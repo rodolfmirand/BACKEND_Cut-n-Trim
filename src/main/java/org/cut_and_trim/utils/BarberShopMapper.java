@@ -43,7 +43,7 @@ public class BarberShopMapper {
         return barberShopsList;
     }
 
-    public BarberShopResponseServicesList toBarberShopServicesList(BarberShop barberShop){
+    public BarberShopResponseServicesList toBarberShopResponseServicesList(BarberShop barberShop){
         return new BarberShopResponseServicesList(barberShop);
     }
 }
