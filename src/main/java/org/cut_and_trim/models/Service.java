@@ -2,6 +2,8 @@ package org.cut_and_trim.models;
 
 import java.util.UUID;
 
+import org.cut_and_trim.models.enums.ServiceStatus;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,15 +33,27 @@ public class Service {
     @Column(name = "duration")
     private double duration;
 
+    @Column(name = "status")
+    private ServiceStatus status;
+
+    public void setStatusToInactive(){
+        this.status = ServiceStatus.INACTIVE;
+    }
+
+    public void  setStatusToActive(){
+        this.status = ServiceStatus.ACTIVE;
+    }
+
     @Builder
     public Service(String name, double price, double duration) {
         this.name = name;
         this.price = price;
         this.duration = duration;
+        this.status = ServiceStatus.ACTIVE;
     }
 
     @Builder
-    public Service(){
-        
+    public Service() {
+
     }
 }

@@ -14,4 +14,6 @@ public class ServiceUpdateRequest {
     private double price;
 
     private double duration;
+
+    private String status;
 }
