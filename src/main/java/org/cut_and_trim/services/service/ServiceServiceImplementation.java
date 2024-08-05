@@ -6,6 +6,7 @@ import org.cut_and_trim.dtos.request.ServiceUpdateRequest;
 import org.cut_and_trim.dtos.response.ServiceResponse;
 import org.cut_and_trim.models.BarberShop;
 import org.cut_and_trim.models.Service;
+import org.cut_and_trim.models.enums.ServiceStatus;
 import org.cut_and_trim.repositories.BarberShopRepository;
 import org.cut_and_trim.repositories.ServiceRepository;
 import org.cut_and_trim.utils.ServiceMapper;
@@ -41,6 +42,7 @@ public class ServiceServiceImplementation implements ServiceService{
         service.setName(serviceUpdateRequest.getName());
         service.setDuration(serviceUpdateRequest.getDuration());
         service.setPrice(serviceUpdateRequest.getPrice());
+        service.setStatus(ServiceStatus.readCode(serviceUpdateRequest.getStatus()));
 
         serviceRepository.save(service);
         
