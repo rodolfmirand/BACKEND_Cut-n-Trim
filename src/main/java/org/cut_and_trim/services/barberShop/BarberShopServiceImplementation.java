@@ -1,5 +1,6 @@
 package org.cut_and_trim.services.barberShop;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,6 +13,7 @@ import org.cut_and_trim.dtos.response.ServiceResponse;
 import org.cut_and_trim.models.Barber;
 import org.cut_and_trim.models.BarberShop;
 import org.cut_and_trim.models.Service;
+import org.cut_and_trim.models.enums.ServiceStatus;
 import org.cut_and_trim.repositories.BarberRepository;
 import org.cut_and_trim.repositories.BarberShopRepository;
 import org.cut_and_trim.repositories.ServiceRepository;
@@ -79,6 +81,24 @@ public class BarberShopServiceImplementation implements BarberShopService {
 
     @Override
     public BarberShopResponseServicesList findServices(UUID id) {
-        return barberShopMapper.toBarberShopServicesList(barberShopRepository.findById(id).orElse(null));
+        return barberShopMapper.toBarberShopResponseServicesList(barberShopRepository.findById(id).orElse(null));
+    }
+
+    @Override
+    public BarberShopResponseServicesList findAllServicesActives(UUID id) {
+        List<Service> services = new ArrayList<Service>();
+
+        BarberShop barberShop = barberShopRepository.findById(id).orElse(null);
+
+        if (barberShop == null)
+            return null;
+
+        for (Service sv : barberShop.getServices()) {
+            if (!sv.getStatus().equals(ServiceStatus.ACTIVE))
+                continue;
+            services.add(sv);
+        }
+
+        return new BarberShopResponseServicesList(services);
     }
 }
