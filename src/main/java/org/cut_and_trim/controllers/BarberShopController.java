@@ -50,6 +50,11 @@ public class BarberShopController {
         return ResponseEntity.ok().body(barberShopService.findAllServices());
     }
 
+    @GetMapping("/all-sv-act/{id}")
+    public ResponseEntity<BarberShopResponseServicesList> findAllServicesActives(@PathVariable(value = "id") UUID id){
+        return ResponseEntity.ok().body(barberShopService.findAllServicesActives(id));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<BarberShopResponseServicesList> findServices(@PathVariable(value = "id") UUID id) {
         return ResponseEntity.ok().body(barberShopService.findServices(id));
