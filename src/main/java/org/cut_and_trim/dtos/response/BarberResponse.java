@@ -4,11 +4,9 @@ import java.util.UUID;
 
 import org.cut_and_trim.models.Barber;
 
-import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-@Builder
 public class BarberResponse {
 
     private UUID id;
@@ -21,7 +19,6 @@ public class BarberResponse {
 
     private BarberShopResponse barberShop;
 
-    @Builder
     public BarberResponse(Barber barber) {
         this.id = barber.getId();
         this.name = barber.getName();

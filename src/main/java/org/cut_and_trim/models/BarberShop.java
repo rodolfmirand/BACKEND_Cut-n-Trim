@@ -3,6 +3,8 @@ package org.cut_and_trim.models;
 import java.util.List;
 import java.util.UUID;
 
+import org.cut_and_trim.dtos.request.BarberShopRequest;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,13 +13,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "barber_shops")
-@Builder
 public class BarberShop {
 
     @Id
@@ -81,7 +81,6 @@ public class BarberShop {
         }
     }
 
-    @Builder
     public BarberShop(String name, String street, String number, String neighborhood, String city, String state,
             String cep, int openingTime, int closingTime, int lunchTimeStart, int lunchTimeEnd) {
         this.name = name;
@@ -97,7 +96,20 @@ public class BarberShop {
         this.lunchTimeEnd = lunchTimeEnd;
     }
 
-    @Builder
     public BarberShop() {
+    }
+
+    public BarberShop(BarberShopRequest barberShopRequest) {
+        this.name = barberShopRequest.getName();
+        this.street = barberShopRequest.getStreet();
+        this.number = barberShopRequest.getNumber();
+        this.neighborhood = barberShopRequest.getNeighborhood();
+        this.city = barberShopRequest.getCity();
+        this.state = barberShopRequest.getState();
+        this.cep = barberShopRequest.getCep();
+        this.openingTime = barberShopRequest.getOpeningTime();
+        this.closingTime = barberShopRequest.getClosingTime();
+        this.lunchTimeStart = barberShopRequest.getLunchTimeStart();
+        this.lunchTimeEnd = barberShopRequest.getLunchTimeEnd();
     }
 }

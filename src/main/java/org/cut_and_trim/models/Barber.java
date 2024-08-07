@@ -11,14 +11,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Data;
 import lombok.Setter;
 
 @Data
 @Entity
 @Table(name = "barbers")
-@Builder
 public class Barber {
 
     @Id
@@ -39,14 +37,12 @@ public class Barber {
     @OneToOne(cascade = CascadeType.ALL)
     private BarberShop barberShop;
 
-    @Builder
     public Barber(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
-    @Builder
     public Barber() {
     }
 }

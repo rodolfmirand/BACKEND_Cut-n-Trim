@@ -10,13 +10,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "services")
-@Builder
 public class Service {
 
     @Id
@@ -44,7 +42,6 @@ public class Service {
         this.status = ServiceStatus.ACTIVE;
     }
 
-    @Builder
     public Service(String name, double price, double duration) {
         this.name = name;
         this.price = price;
@@ -52,7 +49,6 @@ public class Service {
         this.status = ServiceStatus.ACTIVE;
     }
 
-    @Builder
     public Service() {
 
     }
