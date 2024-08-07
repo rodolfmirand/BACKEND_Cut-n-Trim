@@ -9,11 +9,7 @@ import org.springframework.stereotype.Component;
 public class ServiceMapper {
 
     public Service toService(ServiceRequest serviceRequest) {
-        return Service.builder()
-                .name(serviceRequest.getName())
-                .price(serviceRequest.getPrice())
-                .duration(serviceRequest.getDuration())
-                .build();
+        return new Service(serviceRequest.getName(), serviceRequest.getPrice(), serviceRequest.getDuration());
     }
 
     public ServiceResponse toServiceResponse(Service service){

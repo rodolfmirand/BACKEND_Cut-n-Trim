@@ -14,15 +14,7 @@ import org.springframework.stereotype.Component;
 public class BarberShopMapper {
 
     public BarberShop toBarberShop(BarberShopRequest barberShopRequest) {
-        return BarberShop.builder()
-                .name(barberShopRequest.getName())
-                .street(barberShopRequest.getStreet())
-                .number(barberShopRequest.getNumber())
-                .neighborhood(barberShopRequest.getNeighborhood())
-                .city(barberShopRequest.getCity())
-                .state(barberShopRequest.getState())
-                .cep(barberShopRequest.getCep())
-                .build();
+        return new BarberShop(barberShopRequest);
     }
 
     public BarberShopResponse toBarberShopResponse(BarberShop barberShop) {

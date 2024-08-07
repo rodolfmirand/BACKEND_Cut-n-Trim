@@ -12,10 +12,7 @@ import org.springframework.stereotype.Component;
 public class CustomerMapper {
 
     public Customer toCustomer(CustomerRequest customerRequest) {
-        return Customer.builder()
-                .phoneNumber(customerRequest.getPhoneNumber())
-                .name(customerRequest.getName())
-                .build();
+        return new Customer(customerRequest.getName(), customerRequest.getPhoneNumber());
     }
 
     public List<CustomerResponse> toCustomersList(List<Customer> customersList) {

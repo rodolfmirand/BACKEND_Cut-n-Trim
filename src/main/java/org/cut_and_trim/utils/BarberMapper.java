@@ -13,11 +13,7 @@ import org.springframework.stereotype.Component;
 public class BarberMapper {
 
     public Barber toBarber(BarberRequest barberRequest) {
-        return Barber.builder()
-                .name(barberRequest.getName())
-                .email(barberRequest.getEmail())
-                .password(barberRequest.getPassword())
-                .build();
+        return new Barber(barberRequest.getName(), barberRequest.getEmail(), barberRequest.getPassword());
     }
 
     public BarberResponse toBarberResponse(Barber barber) {
