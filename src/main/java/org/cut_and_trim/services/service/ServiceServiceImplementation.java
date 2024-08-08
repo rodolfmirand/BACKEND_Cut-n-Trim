@@ -57,7 +57,7 @@ public class ServiceServiceImplementation implements ServiceService{
         BarberShop barberShop = barberShopRepository.findById(serviceDeleteRequest.getBarberShopID()).orElse(null);
         if(barberShop == null) return false;
 
-        barberShop.removeServiceFromList(service);
+        barberShop.removeService(service);
         serviceRepository.delete(service);
 
         return true;
