@@ -22,22 +22,6 @@ public class BarberShopController {
     @Autowired
     private BarberShopService barberShopService;
 
-    @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody BarberShopRequest barberShopRequest) {
-        if (barberShopRequest.getBarberID() == null || barberShopRequest.getCep().isEmpty()
-                || barberShopRequest.getCity().isEmpty()
-                || barberShopRequest.getNeighborhood().isEmpty() || barberShopRequest.getName().isEmpty()
-                || barberShopRequest.getStreet().isEmpty() || barberShopRequest.getState().isEmpty())
-            return ResponseEntity.badRequest().body("Empty Values.");
-
-        BarberShopResponse barberShopResponse = barberShopService.register(barberShopRequest);
-
-        if (barberShopResponse == null)
-            return ResponseEntity.internalServerError().body("BarberShop already exists.");
-
-        return ResponseEntity.ok().body(barberShopResponse);
-    }
-
     @PostMapping("/add-service")
     public ResponseEntity<ServiceResponse> addService(
             @RequestBody BarberShopRequestAddService barberShopRequestAddService) {
