@@ -9,10 +9,11 @@ import org.cut_and_trim.dtos.response.BarberShopResponse;
 import org.cut_and_trim.dtos.response.AllBarberShopsResponseServicesList;
 import org.cut_and_trim.dtos.response.BarberShopResponseServicesList;
 import org.cut_and_trim.dtos.response.ServiceResponse;
+import org.cut_and_trim.models.BarberShop;
 
 public interface BarberShopService {
 
-    BarberShopResponse register(BarberShopRequest barberShopRequest);
+    void register(BarberShop barberShop);
 
     ServiceResponse addServiceInList(UUID barberShopID, ServiceRequest serviceRequest);
 

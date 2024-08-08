@@ -40,20 +40,8 @@ public class BarberShopServiceImplementation implements BarberShopService {
     private ServiceMapper serviceMapper;
 
     @Override
-    public BarberShopResponse register(BarberShopRequest barberShopRequest) {
-        Barber barber = barberRepository.findById(barberShopRequest.getBarberID()).orElse(null);
-
-        if (barber == null)
-            return null;
-
-        BarberShop barberShop = barberShopMapper.toBarberShop(barberShopRequest);
-
-        barber.setBarberShop(barberShop);
-
+    public void register(BarberShop barberShop) {
         barberShopRepository.save(barberShop);
-        barberRepository.save(barber);
-
-        return barberShopMapper.toBarberShopResponse(barberShop);
     }
 
     @Override
@@ -65,7 +53,7 @@ public class BarberShopServiceImplementation implements BarberShopService {
 
         Service service = serviceMapper.toService(serviceRequest);
 
-        barberShop.addServiceInList(service);
+        barberShop.addService(service);
 
         serviceRepository.save(service);
 
