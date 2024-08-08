@@ -1,10 +1,11 @@
 package org.cut_and_trim.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -13,6 +14,7 @@ public class Customer {
 
     @Id
     @Column(name = "phoneNumber", nullable = false, unique = true)
+    @Setter(AccessLevel.NONE)
     private String phoneNumber;
 
     @Column(name = "name", nullable = true)
