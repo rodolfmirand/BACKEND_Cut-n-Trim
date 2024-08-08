@@ -13,21 +13,11 @@ public class BarberResponse {
 
     private String name;
 
-    private String email;
-
-    private String password;
-
-    private BarberShopResponse barberShop;
+    private String phoneNumber;
 
     public BarberResponse(Barber barber) {
         this.id = barber.getId();
         this.name = barber.getName();
-        this.email = barber.getEmail();
-        this.password = barber.getPassword();
-        if (barber.getBarberShop() == null) {
-            this.barberShop = null;
-        } else {
-            this.barberShop = new BarberShopResponse(barber.getBarberShop());
-        }
+        this.phoneNumber = barber.getPhoneNumber();
     }
 }
