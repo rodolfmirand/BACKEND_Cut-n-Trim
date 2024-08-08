@@ -2,10 +2,12 @@ package org.cut_and_trim.controllers;
 
 import java.util.List;
 
-import org.cut_and_trim.dtos.request.BarberRegisterRequest;
+import org.cut_and_trim.dtos.request.BarberRegisterBarberShopRequest;
+import org.cut_and_trim.dtos.request.OwnerRegisterBarberShopRequest;
 import org.cut_and_trim.dtos.request.BarberRequest;
 import org.cut_and_trim.dtos.request.BarberShopRequest;
 import org.cut_and_trim.dtos.response.BarberResponse;
+import org.cut_and_trim.models.Barber;
 import org.cut_and_trim.services.barber.BarberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,45 +25,12 @@ public class BarberController {
     private BarberService barberService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody BarberRequest barberRequest) {
+    public ResponseEntity<?> register(@RequestBody BarberRegisterBarberShopRequest barberRegisterBarberShopRequest){
+        BarberResponse barberResponse = barberService.register(barberRegisterBarberShopRequest);
 
-        if (barberRequest.getName().isEmpty()
-                || barberRequest.getEmail().isEmpty()
-                || barberRequest.getPassword().isEmpty())
-            return ResponseEntity.badRequest().body("Empty Values.");
-
-        BarberResponse barberResponse = barberService.register(barberRequest);
-
-        if (barberResponse == null)
-            return ResponseEntity.internalServerError().body("Barber already exists.");
+        if(barberResponse == null) return ResponseEntity.badRequest().body("BarberShop not exists or Barber already exists.");
 
         return ResponseEntity.ok().body(barberResponse);
-    }
-
-    @PostMapping("/register-brshp")
-    public ResponseEntity<?> register(@RequestBody BarberRegisterRequest barberRegisterRequest) {
-
-        BarberRequest barberRequest = barberRegisterRequest.getBarber();
-        BarberShopRequest barberShopRequest = barberRegisterRequest.getBarberShop();
-
-        if (barberRequest.getName().isEmpty()
-                || barberRequest.getEmail().isEmpty()
-                || barberRequest.getPassword().isEmpty())
-            return ResponseEntity.badRequest().body("Empty Barber Values.");
-
-        if (barberShopRequest.getCep().isEmpty()
-                || barberShopRequest.getCity().isEmpty()
-                || barberShopRequest.getNeighborhood().isEmpty() || barberShopRequest.getName().isEmpty()
-                || barberShopRequest.getStreet().isEmpty() || barberShopRequest.getState().isEmpty())
-            return ResponseEntity.badRequest().body("Empty BarberShop Values.");
-
-        BarberResponse barberResponse = barberService.register(barberRequest, barberShopRequest);
-
-        if (barberResponse == null)
-            return ResponseEntity.internalServerError().body("Barber already exists.");
-
-        return ResponseEntity.ok().body(barberResponse);
-
     }
 
     @GetMapping("/findall")

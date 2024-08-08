@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.cut_and_trim.dtos.request.BarberRequest;
-import org.cut_and_trim.dtos.response.BarberRegisterResponse;
 import org.cut_and_trim.dtos.response.BarberResponse;
 import org.cut_and_trim.models.Barber;
 import org.springframework.stereotype.Component;
@@ -13,15 +12,11 @@ import org.springframework.stereotype.Component;
 public class BarberMapper {
 
     public Barber toBarber(BarberRequest barberRequest) {
-        return new Barber(barberRequest.getName(), barberRequest.getEmail(), barberRequest.getPassword());
+        return new Barber(barberRequest);
     }
 
     public BarberResponse toBarberResponse(Barber barber) {
         return new BarberResponse(barber);
-    }
-
-    public BarberRegisterResponse toBarberRegisterResponse(Barber barber){
-        return new BarberRegisterResponse(barber);
     }
 
     public List<BarberResponse> toBarbersList(List<Barber> barbersList){
