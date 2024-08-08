@@ -3,16 +3,11 @@ package org.cut_and_trim.models;
 import java.util.List;
 import java.util.UUID;
 
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Setter;
 import org.cut_and_trim.dtos.request.BarberShopRequest;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
@@ -23,6 +18,7 @@ public class BarberShop {
     @Id
     @Column(name = "id", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Setter(AccessLevel.NONE)
     private UUID id;
 
     @Column(name = "name", nullable = false)
@@ -58,31 +54,38 @@ public class BarberShop {
     @Column(name = "lunch_time_end", nullable = false)
     private int lunchTimeEnd;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
+    private List<Barber> barbers;
+
+    @OneToMany
     private List<Customer> customers;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     private List<Service> services;
 
-    public void addCustomerInList(Customer customer) {
+    public void addBarber(Barber barber) {
+        this.barbers.add(barber);
+    }
+
+    public void addCustomer(Customer customer) {
         this.customers.add(customer);
     }
 
-    public void addServiceInList(Service service) {
+    public void addService(Service service) {
         this.services.add(service);
     }
 
-    public void removeServiceFromList(Service service){
-        for(Service sv : this.services){
-            if(sv.getId().equals(service.getId())){
+    public void removeService(Service service) {
+        for (Service sv : this.services) {
+            if (sv.getId().equals(service.getId())) {
                 this.services.remove(sv);
                 break;
-            } 
+            }
         }
     }
 
     public BarberShop(String name, String street, String number, String neighborhood, String city, String state,
-            String cep, int openingTime, int closingTime, int lunchTimeStart, int lunchTimeEnd) {
+                      String cep, int openingTime, int closingTime, int lunchTimeStart, int lunchTimeEnd) {
         this.name = name;
         this.street = street;
         this.number = number;
