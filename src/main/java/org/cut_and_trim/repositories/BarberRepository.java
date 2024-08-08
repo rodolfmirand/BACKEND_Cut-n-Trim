@@ -9,6 +9,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BarberRepository extends JpaRepository<Barber, UUID>{
-    
-    Optional<Barber> findByEmail(String email);
+    Optional<Barber> findByPhoneNumber(String phoneNumber);
 }
