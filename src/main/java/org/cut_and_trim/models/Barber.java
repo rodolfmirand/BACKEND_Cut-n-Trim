@@ -13,6 +13,7 @@ import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
+import org.cut_and_trim.dtos.request.BarberRequest;
 
 @Data
 @Entity
@@ -27,20 +28,18 @@ public class Barber {
 
     @Column(name = "name", nullable = false)
     private String name;
-    
-    @Column(name = "email", nullable = false, unique = true)
-    private String email;
 
-    @Column(name = "password", nullable = false)   
-    private String password;
+    @Column(name = "phoneNumber", nullable = false, unique = true)
+    private String phoneNumber;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private BarberShop barberShop;
-
-    public Barber(String name, String email, String password) {
+    public Barber(String name, String phoneNumber) {
         this.name = name;
-        this.email = email;
-        this.password = password;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Barber(BarberRequest barberRequest) {
+        this.name = barberRequest.getName();
+        this.phoneNumber = barberRequest.getPhoneNumber();
     }
 
     public Barber() {
