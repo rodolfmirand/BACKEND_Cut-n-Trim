@@ -4,19 +4,14 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-@Builder
 public class BarberRequest {
     
     private String name;
 
-    private String email;
+    private String phoneNumber;
 
-    private String password;
-
-    @Builder
-    public BarberRequest(String name, String email, String password) {
+    public BarberRequest(String name, String phoneNumber) {
         this.name = name;
-        this.email = email;
-        this.password = password;
+        this.phoneNumber = phoneNumber;
     }
 }

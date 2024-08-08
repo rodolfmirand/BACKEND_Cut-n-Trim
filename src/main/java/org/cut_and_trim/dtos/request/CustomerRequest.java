@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-@Builder
 public class CustomerRequest {
     
     private String phoneNumber;
@@ -15,7 +14,6 @@ public class CustomerRequest {
 
     private UUID barberShopID;
 
-    @Builder
     public CustomerRequest(String phoneNumber, String name, UUID barberShopID){
         this.phoneNumber = phoneNumber;
         this.name = name;

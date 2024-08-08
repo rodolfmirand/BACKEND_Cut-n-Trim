@@ -2,14 +2,13 @@ package org.cut_and_trim.dtos.request;
 
 import java.util.UUID;
 
-import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 
 @Data
-@Builder
 public class BarberShopRequest {
 
-    private UUID barberID;
+    private UUID ownerID;
 
     private String name;
 
@@ -33,10 +32,9 @@ public class BarberShopRequest {
 
     private int lunchTimeEnd;
 
-    @Builder
-    public BarberShopRequest(UUID barberID, String name, String street, String number, String neighborhood, String city,
+    public BarberShopRequest(UUID ownerID, String name, String street, String number, String neighborhood, String city,
             String state, String cep, int openingTime, int closingTime, int lunchTimeStart, int lunchTimeEnd) {
-        this.barberID = barberID;
+        this.ownerID = ownerID;
         this.name = name;
         this.street = street;
         this.number = number;
