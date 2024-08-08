@@ -3,14 +3,14 @@ package org.cut_and_trim.dtos.request;
 import lombok.Getter;
 
 @Getter
-public class BarberRegisterRequest {
+public class OwnerRegisterBarberShopRequest {
     
-    private BarberRequest barber;
+    private OwnerRequest owner;
 
     private BarberShopRequest barberShop;
 
-    public BarberRegisterRequest(BarberRequest barber, BarberShopRequest barberShop){
-        this.barber = barber;
-        this.barberShop = barberShop;
+    public OwnerRegisterBarberShopRequest(OwnerRequest ownerRequest, BarberShopRequest barberShopRequest){
+        this.owner = ownerRequest;
+        this.barberShop = barberShopRequest;
     }
 }
