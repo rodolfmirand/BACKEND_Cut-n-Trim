@@ -7,9 +7,9 @@ import lombok.Getter;
 @Getter
 public class SignupResponse {
     
-    private UUID barberID;
+    private UUID id;
     
     public SignupResponse(UUID id){
-        this.barberID = id;
+        this.id = id;
     }
 }
