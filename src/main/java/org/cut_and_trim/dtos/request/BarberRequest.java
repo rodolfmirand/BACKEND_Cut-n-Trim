@@ -10,8 +10,14 @@ public class BarberRequest {
 
     private String phoneNumber;
 
-    public BarberRequest(String name, String phoneNumber) {
+    private String email;
+
+    private String password;
+
+    public BarberRequest(String name, String phoneNumber, String email, String password) {
         this.name = name;
         this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
     }
 }

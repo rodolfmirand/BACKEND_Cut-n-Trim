@@ -32,14 +32,25 @@ public class Barber {
     @Column(name = "phoneNumber", nullable = false, unique = true)
     private String phoneNumber;
 
-    public Barber(String name, String phoneNumber) {
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+
+    @Column(name = "password", nullable = false)
+    private String password;
+
+    public Barber(String name, String phoneNumber, String email, String password) {
         this.name = name;
         this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
     }
 
     public Barber(BarberRequest barberRequest) {
         this.name = barberRequest.getName();
         this.phoneNumber = barberRequest.getPhoneNumber();
+        this.email = barberRequest.getEmail();
+        this.password = barberRequest.getPassword();
+
     }
 
     public Barber() {
