@@ -39,8 +39,13 @@ public class BarberShopResponse {
         this.city = barberShop.getCity();
         this.state = barberShop.getState();
         this.cep = barberShop.getCep();
-        for (Barber barber : barberShop.getBarbers()) {
-            this.barbers.add(new BarberResponse(barber));
+
+        if (barberShop.getBarbers().isEmpty()) {
+            this.barbers = null;
+        } else {
+            for (Barber barber : barberShop.getBarbers()) {
+                this.barbers.add(new BarberResponse(barber));
+            }
         }
     }
 }
