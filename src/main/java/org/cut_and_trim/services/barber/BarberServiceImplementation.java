@@ -39,7 +39,9 @@ public class BarberServiceImplementation implements BarberService {
         BarberShop barberShop = barberShopRepository.findById(barberRegisterBarberShopRequest.getBarberShopID()).orElse(null);
         if (barberShop == null) return null;
 
-        if(barberRepository.findByPhoneNumber(barberRegisterBarberShopRequest.getBarber().getPhoneNumber()).isPresent()) return null;
+        if (barberRepository.findByPhoneNumber(barberRegisterBarberShopRequest.getBarber().getPhoneNumber()).isPresent()
+                || barberRepository.findByEmail(barberRegisterBarberShopRequest.getBarber().getEmail()).isPresent())
+            return null;
 
         Barber barber = barberMapper.toBarber(barberRegisterBarberShopRequest.getBarber());
 
@@ -60,8 +62,18 @@ public class BarberServiceImplementation implements BarberService {
     }
 
     @Override
+    public UUID signUp(SignupRequest signupRequest) {
+        Barber barber = barberRepository.findByEmail(signupRequest.getEmail()).orElse(null);
+        if(barber == null) return null;
+
+        if(barber.getPassword().equals(signupRequest.getPassword())) return barber.getId();
+
+        return null;
+    }
+
+    @Override
     public List<BarberResponse> findAll() {
-      return barberMapper.toBarbersList(barberRepository.findAll());
+        return barberMapper.toBarbersList(barberRepository.findAll());
     }
 
 }

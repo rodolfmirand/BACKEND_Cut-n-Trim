@@ -2,6 +2,7 @@ package org.cut_and_trim.services.owner;
 
 import org.cut_and_trim.dtos.request.BarberShopRequest;
 import org.cut_and_trim.dtos.request.OwnerRequest;
+import org.cut_and_trim.dtos.request.SignupRequest;
 import org.cut_and_trim.dtos.response.OwnerResponse;
 import org.cut_and_trim.models.BarberShop;
 import org.cut_and_trim.models.Owner;
@@ -57,5 +58,15 @@ public class OwnerServiceImplementation implements OwnerService {
 
 
         return new OwnerResponse(owner);
+    }
+
+    @Override
+    public UUID signup(SignupRequest signupRequest) {
+        Owner owner = ownerRepository.findByEmail(signupRequest.getEmail()).orElse(null);
+        if(owner == null) return null;
+
+        if(owner.getPassword().equals(signupRequest.getPassword())) return owner.getId();
+
+        return null;
     }
 }

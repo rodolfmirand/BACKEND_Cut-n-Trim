@@ -17,4 +17,6 @@ public interface BarberService {
 
     BarberResponse findById(UUID barberID);
 
+    UUID signUp(SignupRequest signupRequest);
+
 }

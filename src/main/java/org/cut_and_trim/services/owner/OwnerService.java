@@ -2,6 +2,7 @@ package org.cut_and_trim.services.owner;
 
 import org.cut_and_trim.dtos.request.BarberShopRequest;
 import org.cut_and_trim.dtos.request.OwnerRequest;
+import org.cut_and_trim.dtos.request.SignupRequest;
 import org.cut_and_trim.dtos.response.OwnerResponse;
 
 import java.util.List;
@@ -14,5 +15,7 @@ public interface OwnerService {
     OwnerResponse findById(UUID id);
 
     OwnerResponse register(OwnerRequest ownerRequest, BarberShopRequest barberShopRequest);
+
+    UUID signup(SignupRequest signupRequest);
 
 }
