@@ -40,7 +40,7 @@ public class BarberShopResponse {
         this.state = barberShop.getState();
         this.cep = barberShop.getCep();
 
-        if (barberShop.getBarbers().isEmpty()) {
+        if (barberShop.getBarbers() == null) {
             this.barbers = null;
         } else {
             for (Barber barber : barberShop.getBarbers()) {
