@@ -63,6 +63,9 @@ public class BarberShop {
     @OneToMany
     private List<Service> services;
 
+    @OneToOne
+    private BarberShopImage image;
+
     public void addBarber(Barber barber) {
         this.barbers.add(barber);
     }
