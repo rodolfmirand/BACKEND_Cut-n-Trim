@@ -1,5 +1,6 @@
 package org.cut_and_trim.models;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -63,8 +64,7 @@ public class BarberShop {
     @OneToMany
     private List<Service> services;
 
-    @OneToOne
-    private BarberShopImage image;
+    private String image;
 
     public void addBarber(Barber barber) {
         this.barbers.add(barber);
@@ -77,6 +77,7 @@ public class BarberShop {
     public void addService(Service service) {
         this.services.add(service);
     }
+
 
     public void removeService(Service service) {
         for (Service sv : this.services) {
