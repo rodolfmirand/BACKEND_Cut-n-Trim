@@ -10,6 +10,7 @@ import org.cut_and_trim.dtos.response.AllBarberShopsResponseServicesList;
 import org.cut_and_trim.dtos.response.BarberShopResponseServicesList;
 import org.cut_and_trim.dtos.response.ServiceResponse;
 import org.cut_and_trim.models.BarberShop;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface BarberShopService {
 
@@ -22,5 +23,7 @@ public interface BarberShopService {
     BarberShopResponseServicesList findAllServicesActives(UUID id);
 
     BarberShopResponseServicesList findServices(UUID id);
+
+    boolean uploadImage(UUID id, MultipartFile image);
 
 }

@@ -19,7 +19,9 @@ import org.cut_and_trim.repositories.BarberShopRepository;
 import org.cut_and_trim.repositories.ServiceRepository;
 import org.cut_and_trim.utils.BarberShopMapper;
 import org.cut_and_trim.utils.ServiceMapper;
+import org.cut_and_trim.utils.UploadImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.multipart.MultipartFile;
 
 @org.springframework.stereotype.Service
 public class BarberShopServiceImplementation implements BarberShopService {
@@ -38,6 +40,9 @@ public class BarberShopServiceImplementation implements BarberShopService {
 
     @Autowired
     private ServiceMapper serviceMapper;
+
+    @Autowired
+    private UploadImageUtil uploadImageUtil;
 
     @Override
     public void register(BarberShop barberShop) {
@@ -70,6 +75,25 @@ public class BarberShopServiceImplementation implements BarberShopService {
     @Override
     public BarberShopResponseServicesList findServices(UUID id) {
         return barberShopMapper.toBarberShopResponseServicesList(barberShopRepository.findById(id).orElse(null));
+    }
+
+    @Override
+    public boolean uploadImage(UUID id, MultipartFile image) {
+        BarberShop barberShop = barberShopRepository.findById(id).orElse(null);
+
+        if (barberShop == null) return false;
+
+        try {
+            if (uploadImageUtil.uploadImage(image)) {
+                barberShop.setImage(image.getOriginalFilename());
+            }
+            barberShopRepository.save(barberShop);
+
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override
