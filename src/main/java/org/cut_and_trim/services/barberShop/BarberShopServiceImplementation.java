@@ -1,5 +1,9 @@
 package org.cut_and_trim.services.barberShop;
 
+import java.io.File;
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -21,6 +25,8 @@ import org.cut_and_trim.utils.BarberShopMapper;
 import org.cut_and_trim.utils.ServiceMapper;
 import org.cut_and_trim.utils.UploadImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.web.multipart.MultipartFile;
 
 @org.springframework.stereotype.Service
@@ -94,6 +100,21 @@ public class BarberShopServiceImplementation implements BarberShopService {
         }
 
         return true;
+    }
+
+    @Override
+    public Resource getImage(UUID id) throws MalformedURLException {
+        BarberShop barberShop = barberShopRepository.findById(id).orElse(null);
+        if (barberShop == null) return null;
+
+        Path path = Paths.get("src/main/resources/static/images/" + barberShop.getImage());
+        Resource image = new UrlResource(path.toUri());
+
+        if (image.exists() || image.isReadable()) {
+            return image;
+        } else {
+            return null;
+        }
     }
 
     @Override
