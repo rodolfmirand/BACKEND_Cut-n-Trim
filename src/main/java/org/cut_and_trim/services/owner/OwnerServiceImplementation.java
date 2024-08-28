@@ -65,7 +65,7 @@ public class OwnerServiceImplementation implements OwnerService {
         Owner owner = ownerRepository.findByEmail(signupRequest.getEmail()).orElse(null);
         if(owner == null) return null;
 
-        if(owner.getPassword().equals(signupRequest.getPassword())) return owner.getId();
+        if(owner.getPassword().equals(signupRequest.getPassword())) return owner.getBarberShop().getId();
 
         return null;
     }
