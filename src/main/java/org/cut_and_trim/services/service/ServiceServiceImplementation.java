@@ -12,6 +12,8 @@ import org.cut_and_trim.repositories.ServiceRepository;
 import org.cut_and_trim.utils.ServiceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.UUID;
+
 @org.springframework.stereotype.Service
 public class ServiceServiceImplementation implements ServiceService{
 
@@ -61,5 +63,10 @@ public class ServiceServiceImplementation implements ServiceService{
         serviceRepository.delete(service);
 
         return true;
+    }
+
+    @Override
+    public ServiceResponse findById(UUID id) {
+        return serviceMapper.toServiceResponse(serviceRepository.findById(id).orElse(null));
     }
 }
