@@ -39,7 +39,7 @@ public class OwnerController {
         return ResponseEntity.ok().body(ownerResponse);
     }
 
-    @GetMapping("/findall")
+    @GetMapping("/find-all")
     public ResponseEntity<List<OwnerResponse>> findAll(){
         return ResponseEntity.ok().body(ownerService.findAll());
     }

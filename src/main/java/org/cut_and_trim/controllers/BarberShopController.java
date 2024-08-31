@@ -28,6 +28,15 @@ public class BarberShopController {
         return ResponseEntity.ok().body(barberShopService.findAll());
     }
 
+    @GetMapping("find")
+    public ResponseEntity<?> find(@RequestParam("id") UUID id) {
+        BarberShopResponse barberShopResponse = barberShopService.findById(id);
+        if (barberShopResponse != null)
+            return ResponseEntity.ok().body(barberShopResponse);
+
+        return ResponseEntity.internalServerError().body("Barber Shop not exists.");
+    }
+
     @PostMapping("/add-service")
     public ResponseEntity<ServiceResponse> addService(
             @RequestBody BarberShopRequestAddService barberShopRequestAddService) {

@@ -33,7 +33,7 @@ public class BarberController {
         return ResponseEntity.ok().body(barberResponse);
     }
 
-    @GetMapping("/findall")
+    @GetMapping("/find-all")
     public ResponseEntity<List<BarberResponse>> findAll() {
         return ResponseEntity.ok().body(barberService.findAll());
     }
