@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import jakarta.persistence.Column;
 import org.cut_and_trim.models.Barber;
 import org.cut_and_trim.models.BarberShop;
 
@@ -28,6 +29,15 @@ public class BarberShopResponse {
 
     private String cep;
 
+    private int openingTime;
+
+    private int closingTime;
+
+    private int lunchTimeStart;
+
+    private int lunchTimeEnd;
+
+
     private List<BarberResponse> barbers = new ArrayList<>();
 
     public BarberShopResponse(BarberShop barberShop) {
@@ -39,7 +49,10 @@ public class BarberShopResponse {
         this.city = barberShop.getCity();
         this.state = barberShop.getState();
         this.cep = barberShop.getCep();
-
+        this.openingTime = barberShop.getOpeningTime();
+        this.closingTime = barberShop.getClosingTime();
+        this.lunchTimeStart = barberShop.getLunchTimeStart();
+        this.lunchTimeEnd = barberShop.getLunchTimeEnd();
         if (barberShop.getBarbers() == null) {
             this.barbers = null;
         } else {
