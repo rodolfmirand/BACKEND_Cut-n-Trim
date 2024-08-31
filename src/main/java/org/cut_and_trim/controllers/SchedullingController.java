@@ -34,6 +34,7 @@ public class SchedullingController {
             return ResponseEntity.badRequest().body("Empty scheduling values.");
         }
 
+
         Boolean response = service.createSchedulling(request);
 
         return ResponseEntity.ok().body(response);
@@ -41,8 +42,8 @@ public class SchedullingController {
 
     @GetMapping("/findDay")
     public ResponseEntity<List<Scheduling>> getScheduling(
-        @Param("BarberShopId") UUID barberId,
-        @Param("Date") LocalDate date
+        @RequestParam("BarberShopId") UUID barberId,
+        @RequestParam("Date") LocalDate date
     ){
         SchedullingRequest request = new SchedullingRequest(barberId,date);
 

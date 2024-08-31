@@ -21,7 +21,7 @@ public class Scheduling {
 
     @ManyToOne
     @JoinColumn(name = "barber_shop_id", nullable = false)
-    private BarberShop barberShoper;
+    private BarberShop barberShop;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
@@ -38,8 +38,8 @@ public class Scheduling {
     private LocalDate date;
 
 
-    public Scheduling(BarberShop barberShoper, Customer customer, Service service, LocalTime hourly, LocalDate date) {
-        this.barberShoper = barberShoper;
+    public Scheduling(BarberShop barberShop, Customer customer, Service service, LocalTime hourly, LocalDate date) {
+        this.barberShop = barberShop;
         this.customer = customer;
         this.service = service;
         this.hourly = hourly;

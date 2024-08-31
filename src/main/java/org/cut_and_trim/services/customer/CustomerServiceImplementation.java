@@ -32,7 +32,6 @@ public class CustomerServiceImplementation implements CustomerService {
     @Override
     public CustomerResponse register(CustomerRequest customerRequest) {
         Customer customerCheck = customerRepository.findByPhoneNumber(customerRequest.getPhoneNumber()).orElse(null);
-
         if (customerCheck != null)
             return new CustomerResponse(customerCheck);
 
@@ -41,8 +40,8 @@ public class CustomerServiceImplementation implements CustomerService {
 
         barberShop.addCustomer(customer);
 
-        barberShopRepository.save(barberShop);
         customerRepository.save(customer);
+        barberShopRepository.save(barberShop);
 
         return new CustomerResponse(customer);
     }

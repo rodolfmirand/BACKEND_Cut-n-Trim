@@ -43,22 +43,23 @@ public class SchedulingServiceImplementation{
             return true;
 
         }catch (Exception e){
+            System.out.println(e);
             return false;
         }
     }
 
     public List<Scheduling> getSchedulling(SchedullingRequest request){
-        BarberShop barberShop = barberShopRepository.findById(request.getBarberShopId()).orElse(null);
-        List<Scheduling> response = repository.findByBarberAndDate(barberShop, request.getDate()).orElse(null);
+        BarberShop barberShop = barberShopRepository.findById(request.getBarberShopId()).orElse(null);;
+        List<Scheduling> response = repository.findByBarberShopAndDate(barberShop, request.getDate());
         return response;
     }
 
     public boolean deleteSchedulling(SchedullingDeleteRequest request){
         BarberShop barberShop = barberShopRepository.findById(request.getBarberShopId()).orElse(null);
-        Optional<Scheduling> schedulingOptional = repository.findScheduling(barberShop, request.getDate(), request.getHourly());
+        Scheduling scheduling = repository.findScheduling(barberShop, request.getDate(), request.getHourly());
 
-        if (schedulingOptional.isPresent()) {
-            repository.delete(schedulingOptional.get());
+        if (scheduling != null) {
+            repository.delete(scheduling);
             return true;
         } else {
             return false;
