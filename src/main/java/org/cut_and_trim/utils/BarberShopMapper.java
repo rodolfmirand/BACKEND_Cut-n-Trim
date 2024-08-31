@@ -21,21 +21,29 @@ public class BarberShopMapper {
         return new BarberShopResponse(barberShop);
     }
 
-    public AllBarberShopsResponseServicesList toBarberShopResponseServiceList(BarberShop barberShop){
+    public List<BarberShopResponse> toBarberShopsResponse(List<BarberShop> barberShops) {
+        List<BarberShopResponse> barberShopsResponse = new ArrayList<>();
+        for (BarberShop barberShop : barberShops) {
+            barberShopsResponse.add(new BarberShopResponse(barberShop));
+        }
+        return barberShopsResponse;
+    }
+
+    public AllBarberShopsResponseServicesList toBarberShopResponseServiceList(BarberShop barberShop) {
         return new AllBarberShopsResponseServicesList(barberShop);
     }
 
-    public List<AllBarberShopsResponseServicesList> toAllBarberShopsServicesList(List<BarberShop> barberShops){
+    public List<AllBarberShopsResponseServicesList> toAllBarberShopsServicesList(List<BarberShop> barberShops) {
         List<AllBarberShopsResponseServicesList> barberShopsList = new ArrayList<AllBarberShopsResponseServicesList>();
 
-        for(BarberShop barberShop : barberShops){
+        for (BarberShop barberShop : barberShops) {
             barberShopsList.add(toBarberShopResponseServiceList(barberShop));
         }
-        
+
         return barberShopsList;
     }
 
-    public BarberShopResponseServicesList toBarberShopResponseServicesList(BarberShop barberShop){
+    public BarberShopResponseServicesList toBarberShopResponseServicesList(BarberShop barberShop) {
         return new BarberShopResponseServicesList(barberShop);
     }
 }
