@@ -51,6 +51,11 @@ public class BarberShopServiceImplementation implements BarberShopService {
     private UploadImageUtil uploadImageUtil;
 
     @Override
+    public List<BarberShopResponse> findAll() {
+        return barberShopMapper.toBarberShopsResponse(barberShopRepository.findAll());
+    }
+
+    @Override
     public void register(BarberShop barberShop) {
         barberShopRepository.save(barberShop);
     }
