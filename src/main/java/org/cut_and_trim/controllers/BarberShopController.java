@@ -6,9 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.cut_and_trim.dtos.request.BarberShopRequestAddService;
-import org.cut_and_trim.dtos.response.AllBarberShopsResponseServicesList;
-import org.cut_and_trim.dtos.response.BarberShopResponseServicesList;
-import org.cut_and_trim.dtos.response.ServiceResponse;
+import org.cut_and_trim.dtos.response.*;
 import org.cut_and_trim.services.barberShop.BarberShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -24,6 +22,11 @@ public class BarberShopController {
 
     @Autowired
     private BarberShopService barberShopService;
+
+    @GetMapping("/find-all")
+    public ResponseEntity<List<BarberShopResponse>> findAll() {
+        return ResponseEntity.ok().body(barberShopService.findAll());
+    }
 
     @PostMapping("/add-service")
     public ResponseEntity<ServiceResponse> addService(
