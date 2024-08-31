@@ -17,6 +17,8 @@ public interface BarberShopService {
 
     List<BarberShopResponse> findAll();
 
+    BarberShopResponse findById(UUID id);
+
     void register(BarberShop barberShop);
 
     ServiceResponse addServiceInList(UUID barberShopID, ServiceRequest serviceRequest);

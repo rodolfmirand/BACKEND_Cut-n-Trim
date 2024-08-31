@@ -56,6 +56,11 @@ public class BarberShopServiceImplementation implements BarberShopService {
     }
 
     @Override
+    public BarberShopResponse findById(UUID id) {
+        return barberShopMapper.toBarberShopResponse(barberShopRepository.findById(id).orElse(null));
+    }
+
+    @Override
     public void register(BarberShop barberShop) {
         barberShopRepository.save(barberShop);
     }
