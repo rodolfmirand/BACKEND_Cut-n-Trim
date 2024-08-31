@@ -24,7 +24,7 @@ public class OwnerController {
         BarberShopRequest barberShopRequest = request.getBarberShop();
 
         if (ownerRequest.getName().isEmpty() || ownerRequest.getEmail().isEmpty() || ownerRequest.getPassword().isEmpty())
-            return ResponseEntity.badRequest().body("Empty owner values.");
+
 
         if (barberShopRequest.getCep().isEmpty()
                 || barberShopRequest.getCity().isEmpty()
